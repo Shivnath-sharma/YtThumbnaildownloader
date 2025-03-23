@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Thumbnail Downloader</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>YouTube Thumbnail Downloader</h1>
+    
+    <!-- Input for YouTube URL -->
+    <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL" />
+
+    <!-- Quality Options -->
+    <select id="quality">
+      <option value="1920x1080">1080p (1920×1080) – Highest Quality</option>
+      <option value="maxresdefault">720p (1280×720) – High Quality</option>
+      <option value="hqdefault">480p (480×360) – Medium Quality</option>
+      <option value="sddefault">360p (640×480) – Standard Quality</option>
+      <option value="mqdefault">240p (320×180) – Low Quality</option>
+    </select>
+    
+    
+
+    <!-- Buttons -->
+    <button onclick="getThumbnail()">Get Thumbnail</button>
+    <button onclick="generateLink()">Generate Link</button>
+
+    <!-- Link Container -->
+    <p id="linkContainer" class="hidden">
+      Download Link: <a id="downloadLink" target="_blank"></a>
+    </p>
+
+    <!-- Display Thumbnail and Download Option -->
+    <div id="thumbnailContainer" class="hidden">
+      <img class="thumbnail" id="thumbnail" alt="YouTube Thumbnail" />
+      <button id="downloadBtn" download="thumbnail.jpg" onclick="downloadThumbnail()">Download Thumbnail</button>
+    </div>
+  </div>
+
+  <script src="./assets/script.js"></script>
+</body>
+</html>

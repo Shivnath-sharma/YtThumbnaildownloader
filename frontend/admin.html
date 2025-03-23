@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="admin-heading">Admin Panel</h1>
+  
+    <!-- ✅ Login Form -->
+    <div id="login-form">
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+  
+    <!-- ✅ Logout Section -->
+    <div id="logout-section" class="hidden">
+      <button onclick="logout()">Logout</button>
+    </div>
+  
+    <!-- ✅ Thumbnail List -->
+    <ul id="thumbnail-list" class="hidden"></ul>
+  </div>
+  
+
+  <script src="./assets/script.js"></script>
+</body>
+</html>

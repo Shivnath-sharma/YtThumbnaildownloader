@@ -1,0 +1,17 @@
+{
+  "name": "youtube-thumbnail-downloader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "mongodb": "^6.15.0"
+  }
+}

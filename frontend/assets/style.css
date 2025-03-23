@@ -1,0 +1,158 @@
+/* ✅ General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Heading Styling */
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#thumbnail {
+  width: 100%; 
+  max-width: 640px; /* 1080p ka aspect ratio maintain hoga */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding-top: 10px;
+}
+
+
+/* ✅ Input Styling */
+input[type="text"],
+input[type="password"],
+select {
+  width: calc(100% - 24px);
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #4CAF50;
+}
+
+/* ✅ Button Styling */
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 12px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* ✅ Logout Button */
+#logout-section button {
+  background-color: #ff4d4d;
+}
+
+#logout-section button:hover {
+  background-color: #e60000;
+}
+
+/* ✅ Thumbnail List */
+#thumbnail-list {
+  margin-top: 20px;
+}
+
+#thumbnail-list li {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+#thumbnail-list li:hover {
+  background-color: #f0f0f0;
+}
+
+#thumbnail-list img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+#thumbnail-list button {
+  background-color: #ff4d4d;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#thumbnail-list button:hover {
+  background-color: #e60000;
+}
+
+/* ✅ Hidden Class */
+.hidden {
+  display: none;
+}
+
+/* ✅ Error Message Styling */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #thumbnail-list img {
+    width: 80px;
+  }
+}
