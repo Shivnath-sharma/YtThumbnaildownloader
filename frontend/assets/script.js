@@ -5,7 +5,7 @@ async function getThumbnail() {
 
   if (videoId) {
     let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
-    
+
     // ✅ Try 1080p first
     if (quality === '1080p') {
       thumbnailUrl = `https://img.youtube.com/vi/${videoId}/1920x1080.jpg`;
@@ -105,6 +105,14 @@ function extractVideoId(url) {
   return match ? match[1] : null;
 }
 
+// ✅ Handle login using Enter key
+document.getElementById('login-form').addEventListener('keydown', async (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Prevent page reload
+    await login(); // Call your existing login function
+  }
+});
+
 async function login() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -142,7 +150,7 @@ async function fetchThumbnails() {
   try {
     const res = await fetch('/api/thumbnails');
     if (!res.ok) throw new Error(`Failed to fetch thumbnails: ${res.status}`);
-    
+
     const data = await res.json();
 
     const list = document.getElementById('thumbnail-list');
@@ -152,7 +160,7 @@ async function fetchThumbnails() {
     data.forEach((item) => {
       if (!item.videoId) return;
 
-      // ✅ Try maxresdefault instead of 1920x1080
+      // ✅ Try maxresdefault first
       const thumbnailUrl = `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`;
 
       const li = document.createElement('li');
@@ -163,13 +171,50 @@ async function fetchThumbnails() {
           <img src="${thumbnailUrl}" width="100" 
                onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg';">
         </div>
-        <button onclick="deleteThumbnail('${item._id}')">Delete</button>
+           <div class="button-group">
+      <button class="view-btn" onclick="window.open('${thumbnailUrl}', '_blank')">
+        <span class="icon">👁️</span> View
+      </button>
+      <button class="download-btn" onclick="downloadThumbnail('${thumbnailUrl}')">
+        <span class="icon">📥</span> Download
+      </button>
+      <button class="delete-btn" onclick="deleteThumbnail('${item._id}')">
+        <span class="icon">🗑️</span> Delete
+      </button>
+    </div>
+
       `;
       list.appendChild(li);
     });
   } catch (error) {
     console.error('Error fetching thumbnails:', error);
     alert('Failed to load thumbnails. Please try again later.');
+  }
+}
+
+function viewThumbnail(url) {
+  window.open(url, '_blank');
+}
+
+async function downloadThumbnail(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Failed to download thumbnail");
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = "thumbnail.jpg";
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    alert("Failed to download thumbnail.");
+    console.error("Download error:", error);
   }
 }
 

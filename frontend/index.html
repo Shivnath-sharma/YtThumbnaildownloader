@@ -5,32 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YouTube Thumbnail Downloader</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <div class="container">
     <h1>YouTube Thumbnail Downloader</h1>
     
+   <div class="input-container">
     <!-- Input for YouTube URL -->
     <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL" />
-
-    <!-- Quality Options -->
+    <!-- Quality Options --> 
     <select id="quality">
-      <option value="1920x1080">1080p (1920×1080) – Highest Quality</option>
       <option value="maxresdefault">720p (1280×720) – High Quality</option>
       <option value="hqdefault">480p (480×360) – Medium Quality</option>
       <option value="sddefault">360p (640×480) – Standard Quality</option>
       <option value="mqdefault">240p (320×180) – Low Quality</option>
-    </select>
-    
-    
+     </select>
+  </div>  
 
     <!-- Buttons -->
-    <button onclick="getThumbnail()">Get Thumbnail</button>
-    <button onclick="generateLink()">Generate Link</button>
+    <div class="main-button">
+    <button class="button" onclick="getThumbnail()">Get Thumbnail</button>
+    <button class="button" onclick="generateLink()">Generate Link</button>
+    </div>
 
     <!-- Link Container -->
-    <p id="linkContainer" class="hidden">
+    <p id="linkContainer" class="hidden" style="color:white;">
       Download Link: <a id="downloadLink" target="_blank"></a>
     </p>
 
