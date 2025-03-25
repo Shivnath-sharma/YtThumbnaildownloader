@@ -33,13 +33,12 @@ async function getThumbnail() {
   }
 }
 
-
 function displayThumbnail(thumbnailUrl) {
   const thumbnail = document.getElementById("thumbnail");
   thumbnail.src = thumbnailUrl;
   document.getElementById("thumbnailContainer").classList.remove("hidden");
 
-  // ✅ Download button ka setup
+  // ✅ Download button setup
   document.getElementById("downloadBtn").onclick = () => downloadThumbnail(thumbnailUrl);
 }
 
@@ -52,7 +51,7 @@ async function generateLink() {
 
   if (videoId) {
     try {
-      const response = await fetch('/api/thumbnails/create', {
+      const response = await fetch('https://ytthumbnaildownloader.onrender.com/api/thumbnails/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +116,7 @@ async function login() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  const response = await fetch('/api/auth/login', {
+  const response = await fetch('https://ytthumbnaildownloader.onrender.com/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -148,7 +147,7 @@ function logout() {
 
 async function fetchThumbnails() {
   try {
-    const res = await fetch('/api/thumbnails');
+    const res = await fetch('https://ytthumbnaildownloader.onrender.com/api/thumbnails');
     if (!res.ok) throw new Error(`Failed to fetch thumbnails: ${res.status}`);
 
     const data = await res.json();
@@ -160,7 +159,6 @@ async function fetchThumbnails() {
     data.forEach((item) => {
       if (!item.videoId) return;
 
-      // ✅ Try maxresdefault first
       const thumbnailUrl = `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`;
 
       const li = document.createElement('li');
@@ -171,18 +169,17 @@ async function fetchThumbnails() {
           <img src="${thumbnailUrl}" width="100" 
                onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg';">
         </div>
-           <div class="button-group">
-      <button class="view-btn" onclick="window.open('${thumbnailUrl}', '_blank')">
-        <span class="icon">👁️</span> View
-      </button>
-      <button class="download-btn" onclick="downloadThumbnail('${thumbnailUrl}')">
-        <span class="icon">📥</span> Download
-      </button>
-      <button class="delete-btn" onclick="deleteThumbnail('${item._id}')">
-        <span class="icon">🗑️</span> Delete
-      </button>
-    </div>
-
+        <div class="button-group">
+          <button class="view-btn" onclick="window.open('${thumbnailUrl}', '_blank')">
+            <span class="icon">👁️</span> View
+          </button>
+          <button class="download-btn" onclick="downloadThumbnail('${thumbnailUrl}')">
+            <span class="icon">📥</span> Download
+          </button>
+          <button class="delete-btn" onclick="deleteThumbnail('${item._id}')">
+            <span class="icon">🗑️</span> Delete
+          </button>
+        </div>
       `;
       list.appendChild(li);
     });
@@ -192,37 +189,9 @@ async function fetchThumbnails() {
   }
 }
 
-function viewThumbnail(url) {
-  window.open(url, '_blank');
-}
-
-async function downloadThumbnail(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Failed to download thumbnail");
-
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = "thumbnail.jpg";
-    document.body.appendChild(link);
-    link.click();
-
-    document.body.removeChild(link);
-    URL.revokeObjectURL(blobUrl);
-  } catch (error) {
-    alert("Failed to download thumbnail.");
-    console.error("Download error:", error);
-  }
-}
-
-
-
 async function deleteThumbnail(id) {
   if (confirm('Are you sure you want to delete this thumbnail?')) {
-    const res = await fetch(`/api/thumbnails/${id}`, {
+    const res = await fetch(`https://ytthumbnaildownloader.onrender.com/api/thumbnails/${id}`, {
       method: 'DELETE'
     });
     const data = await res.json();
@@ -238,4 +207,3 @@ window.onload = () => {
     fetchThumbnails();
   }
 };
-
