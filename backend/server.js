@@ -8,7 +8,9 @@ const connectDB = require('./config/db');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*' // Allow requests from any frontend
+}));
 
 const thumbnailRoutes = require('./routes/thumbnailRoutes');
 
@@ -26,14 +28,14 @@ app.listen(PORT, () => {
 
 const path = require('path');
 
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../docs')));
 
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/admin.html'));
+  res.sendFile(path.join(__dirname, '../docs/admin.html'));
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../docs/index.html'));
 });
 
 
