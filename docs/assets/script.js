@@ -207,3 +207,4 @@ window.onload = () => {
     fetchThumbnails();
   }
 };
+
