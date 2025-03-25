@@ -3,14 +3,19 @@ require('colors');
 dotenv.config({ path: __dirname + '/.env' }); // 👈 Absolute path use karo
 
 const express = require('express');
-const cors = require('cors');
+
 const connectDB = require('./config/db');
 
 const app = express();
 app.use(express.json());
+const cors = require('cors');
+
 app.use(cors({
-  origin: '*' // Allow requests from any frontend
+  origin: '*', // Allow requests from anywhere (for testing)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 const thumbnailRoutes = require('./routes/thumbnailRoutes');
 
