@@ -171,13 +171,13 @@ async function fetchThumbnails() {
         </div>
         <div class="button-group">
           <button class="view-btn" onclick="window.open('${thumbnailUrl}', '_blank')">
-            <span class="icon">👁️</span> View
+            <i class="fa-sharp-duotone fa-solid fa-eye"></i> View
           </button>
           <button class="download-btn" onclick="downloadThumbnail('${thumbnailUrl}')">
-            <span class="icon">📥</span> Download
+            <i class="fa-solid fa-download"></i> Download
           </button>
           <button class="delete-btn" onclick="deleteThumbnail('${item._id}')">
-            <span class="icon">🗑️</span> Delete
+            <i class="fa-solid fa-trash"></i> Delete
           </button>
         </div>
       `;
@@ -188,6 +188,7 @@ async function fetchThumbnails() {
     alert('Failed to load thumbnails. Please try again later.');
   }
 }
+
 
 async function deleteThumbnail(id) {
   if (confirm('Are you sure you want to delete this thumbnail?')) {

@@ -7,18 +7,20 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-image: url('bg2.jpg');
+  background-image: url('pexels-eberhardgross-691668.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden; 
 }
 
+
 .container {
-  background: #11101081;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  backdrop-filter: blur(10px); /* Blurs everything behind */
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 16px rgba(18, 17, 17, 0.665);
   text-align: center;
   width: 100%;
   max-width: 500px;
@@ -28,7 +30,7 @@ body {
 /* ✅ Heading Styling */
 h1 {
   font-size: 28px;
-  color: #fffafa;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
@@ -37,7 +39,7 @@ h1 {
   max-width: 640px; /* 1080p ka aspect ratio maintain hoga */
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 10px 8px 16px rgba(18, 17, 17, 0.665);
   padding-top: 10px;
 }
 
@@ -45,6 +47,7 @@ h1 {
 input[type="text"],
 input[type="password"] {
   width: calc(100% - 24px);
+  background-color: #d9d9d9;
   padding: 12px;
   margin-bottom: 12px;
   border: 2px solid #ccc;
@@ -56,7 +59,7 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,input[type="password"]:focus {
-  border-color: #131618;
+  border-color: #0c0c0c4d;
 }
 
 /* 🎯 Dropdown Styling */
@@ -66,7 +69,7 @@ select {
   border: 2px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
-  background-color: #fff;
+  background-color: #d9d9d9;
   color: #333;
   outline: none;
   transition: border-color 0.2s ease;
@@ -79,48 +82,79 @@ select {
 
 /* 🔥 Hover/Selected Background Color Change */
 select option {
-  background-color: #ffffff; /* Default background */
-  color: #333;
+  background-color: #d9d9d9; /* Default background */
+  color: #010101;
 }
 
 /* 🟠 When hovering over options */
 select option:hover {
   background-color: #bc2f0f; /* 🔥 Adjusted */
-  color: #ffffff; /* Text color */
+  color: #121111; /* Text color */
 }
-
-
 
 /* ✅ Button Styling */
 button {
-  background-color: #000;
-  color: #ffffff;
-  padding: 14px;
+  color: #141212;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  width: 100%;
+  width: auto;
   font-size: 1.2em;
   margin-top: 12px;
   transition: background-color 0.3s ease, transform 0.1s ease;
-  box-shadow: 2px 2px 3px #000000b4;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
+  will-change: box-shadow,transform;
+  background: #e8e3e3;
+  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 10px #6d6c6c;
+  height: 48px;
+  padding: 0px 32px;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
 }
 
-.main-button {
-  position: relative;
-  padding: 3px;
-  background: linear-gradient(90deg, #03a8f400, #f441a600);
-  border-radius: 0.9em;
-  transition: all 0.4s ease;
+button:hover {
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 10px #6d6c6c;
+  transform: translateY(-2px);
 }
+
+button:active{
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 10px #6d6c6c;
+  transform: translateY(2px);
+} 
 
 /* ✅ Logout Button */
 #logout-section button {
-  background-color: #130f0f;
+  background-color: #eaeaea;
 }
 
 #logout-section button:hover {
-  background-color: #0d0a0a;
+  box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+  transform: translateY(-2px);
+}
+
+#logout-section button:active{
+  box-shadow: inset 0px 3px 7px #d6d6e7;
+  transform: translateY(2px);
+}
+
+
+/* ✅ Download link */
+#downloadLink {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #ffcc00;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+#downloadLink:hover {
+  color: #ff9900;
+  border-bottom: 2px solid #ff9900;
 }
 
 /* ✅ Thumbnail List */
@@ -224,6 +258,12 @@ button .icon {
 .delete-btn:hover {
   background-color: #f44336a1;
   transform: translateY(-2px);
+}
+
+button i {
+  font-size: 15px; /* Change icon size */
+  color: #010101;
+  padding-right: 5px;
 }
 
 /* ✅ Hidden Class */
